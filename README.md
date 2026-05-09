@@ -1,12 +1,12 @@
-# Relational Auction Data Architecture & ETL
+# Relational Auction Data Architecture & Backend Services
 
 ## Project Overview
-This project demonstrates the design and implementation of a highly structured relational database architecture built to support high velocity concurrent transactional data. The primary engineering focus was on dimensional data modeling, data governance, and backend business rule execution.
+This project demonstrates the design and implementation of a highly structured relational database architecture built to support high velocity concurrent transactional data. The primary engineering focus was on dimensional data modeling, data governance, and backend business rule execution utilizing Java and MySQL.
 
 ## Role & Credits
 This project was developed collaboratively. As the lead data and backend engineer, my specific contributions included:
-* Engineering the complex relational database schema and entity relationship diagrams.
-* Developing the backend ETL business rules for automated bid ingestion and validation.
+* Engineering the complex relational database schema and entity relationship diagrams in MySQL.
+* Developing the backend Java services and JSP logic for automated bid ingestion and validation.
 * Structuring the data governance and role based access control logic.
 
 Team Members: Dhruv Patel (dhp91), Adithya Menon (am2998), Sai Sanapala (vs839), Ikhlas Ismale (ip294)
@@ -15,7 +15,7 @@ Team Members: Dhruv Patel (dhp91), Adithya Menon (am2998), Sai Sanapala (vs839),
 To ensure data integrity and query optimization, I engineered a comprehensive Entity Relationship Diagram deployed via MySQL. 
 * Core Entities: Designed normalized tables for users, items, bids, auctions, and alerts.
 * Data Lineage: Established strict foreign key constraints linking bid ledgers to specific user and auction IDs to maintain flawless data provenance.
-* Backend ETL & Business Rules: Engineered continuous data profiling scripts and database level triggers to handle automated bidding limits, reserve price triggers, and real time user alerts.
+* Backend Business Rules (Java): Engineered backend Java logic and database level triggers to handle automated bidding limits, reserve price triggers, and real time user alerts.
 
 ## Quick Start Deployment
 
@@ -32,7 +32,7 @@ To ensure data integrity and query optimization, I engineered a comprehensive En
 2. Grant the expected application user access:
     mysql -uroot -p -e "CREATE USER IF NOT EXISTS 'buyme_app'@'localhost' IDENTIFIED BY 'StrongP@ssw0rd!'; GRANT ALL PRIVILEGES ON auctiondb.* TO 'buyme_app'@'localhost';"
 
-3. Build and run the service:
+3. Build and run the Java service:
     mvn -DskipTests package
     mvn org.eclipse.jetty:jetty-maven-plugin:11.0.15:run-war -Djetty.port=8080
 
@@ -50,7 +50,7 @@ The database seeds include two active auctions, historical bids, and several aut
 | Buyer  | buyer_liam     | buyerpass   |
 
 ## Repository Contents
-* relational_schema_and_triggers.sql: The complete database architecture including automated triggers for bid validation.
-* /backend/: The backend ingestion services and scripts responsible for processing concurrent user data.
+* relational_schema_and_triggers.sql: The complete MySQL database architecture including automated triggers for bid validation.
+* /backend/: The core Java and JSP backend services responsible for processing concurrent user data and executing business logic.
 * entity_relationship_diagram.pdf: The visual architectural blueprint of the database schema.
 * backend_business_rules.pdf: The systematic logic and data validation requirements.
